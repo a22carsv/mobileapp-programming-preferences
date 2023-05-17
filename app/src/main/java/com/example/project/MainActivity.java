@@ -29,6 +29,8 @@ public class MainActivity extends AppCompatActivity {
 
         SharedText = findViewById(R.id.textView);
         button = findViewById(R.id.ButtonToActivity2);
+
+        // Button click listener to open the second activity
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -41,13 +43,15 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
+        // Retrieve the saved text from SharedPreferences
         SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE);
-
         SavedText = sharedPreferences.getString(KEY_TEXT, "");
 
+        // Update the TextView with the saved text
         SharedText.setText("My text: " + SavedText);
     }
 
+    // Method to open the second activity
     private void openSecondActivity() {
         Intent secondActivityIntent = new Intent(MainActivity.this, SecondActivity.class);
         startActivity(secondActivityIntent);

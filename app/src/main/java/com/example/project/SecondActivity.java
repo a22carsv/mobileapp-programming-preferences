@@ -24,13 +24,17 @@ public class SecondActivity extends AppCompatActivity {
         EditField = findViewById(R.id.editText);
         buttonToMain = findViewById(R.id.saveButton);
 
+        // Button click listener to save the text and finish the activity
         buttonToMain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                // Save the text to SharedPreferences
                 SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.putString(KEY_TEXT, EditField.getText().toString());
                 editor.apply();
+
+                // Finish the activity and return to the previous activity
                 finish();
             }
         });
