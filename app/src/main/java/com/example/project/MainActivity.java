@@ -23,12 +23,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-
-        // Read data from Shared Preferences
         String data = sharedPreferences.getString("data", "");
-        // Use the retrieved data as needed in MainActivity
-        // For example, you can update a TextView with the data:
-        // TextView textView = findViewById(R.id.textView);
-        // textView.setText(data);
     }
 }
