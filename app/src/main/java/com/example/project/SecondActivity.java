@@ -10,30 +10,27 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class SecondActivity extends AppCompatActivity {
 
-    private SharedPreferences sharedPreferences;
-    private EditText editText;
+    private EditText EditField;
+    private Button buttonToMain;
+
+    private static final String SHARED_PREF_NAME = "myPref";
+    private static final String KEY_TEXT = "myText";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.second_activity);
 
-        sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
-        editText = findViewById(R.id.editText);
+        EditField = findViewById(R.id.editText);
+        buttonToMain = findViewById(R.id.saveButton);
 
-        Button saveButton = findViewById(R.id.saveButton);
-        saveButton.setOnClickListener(new View.OnClickListener() {
+        buttonToMain.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                // Retrieve the entered text from EditText
-                String enteredText = editText.getText().toString();
-
-                // Write the entered text to Shared Preferences
+            public void onClick(View view) {
+                SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putString("data", enteredText);
+                editor.putString(KEY_TEXT, EditField.getText().toString());
                 editor.apply();
-
-                // Finish the activity and return to MainActivity
                 finish();
             }
         });
